@@ -27,6 +27,7 @@ struct _Config_Item
   Eina_Bool slide;
   int switch_time;
   int dir_value;
+  int fmdir;
   int enable_switch;
   char *current_dir;
 };
