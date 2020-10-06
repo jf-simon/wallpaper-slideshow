@@ -1,0 +1,83 @@
+images.image: "icon.png" COMP;
+images.image: "play.svg" COMP;
+images.image: "pause.svg" COMP;
+collections {
+   group { name: "icon"; max: 64 64;
+      parts {
+         part {
+            name: "icon";
+            description { 
+               state: "default" 0.0;
+               aspect: 1.0 1.0;
+               image.normal: "icon.png";
+               }
+         }
+         part {
+            name: "pause";
+            description { 
+               state: "default" 0.0;
+               aspect: 1.0 1.0;
+               image.normal: "pause.svg";
+               image.border: 10 10 10 10;
+               visible: 0;
+               }
+            description { 
+               state: "show" 0.0;
+               aspect: 1.0 1.0;
+               image.normal: "pause.svg";
+               image.border: 10 10 10 10;
+               visible: 1;
+               }
+         }
+         part {
+            name: "play";
+            description { 
+               state: "default" 0.0;
+               aspect: 1.0 1.0;
+               image.normal: "play.svg";
+               image.border: 10 10 10 10;
+               visible: 0;
+               }
+            description { 
+               state: "show" 0.0;
+               aspect: 1.0 1.0;
+               image.normal: "play.svg";
+               image.border: 10 10 10 10;
+               visible: 1;
+               }
+         }
+      }
+      programs {
+         program {
+            name: "show_pause_button";
+            signal: "show_pause";
+            source: "show_pause";
+            transition: DECELERATE 2.0;
+            script {
+                     set_state(PART:"pause", "show", 0.0);
+            }
+         }
+         program {
+            name: "show_play_button";
+            signal: "show_play";
+            source: "show_play";
+            transition: DECELERATE 2.0;
+            script {
+                     set_state(PART:"pause", "default", 0.0);
+                     set_state(PART:"play", "show", 0.0);
+                     run_program(PROGRAM:"hide_play_button");
+            }
+         }
+         program {
+            name: "hide_play_button";
+            signal: "hide_play";
+            source: "hide_play";
+            transition: DECELERATE 2.0;
+            in: 1.0 0.0;
+            script {
+                     set_state(PART:"play", "default", 0.0);
+            }
+         }
+      }
+   }
+}
