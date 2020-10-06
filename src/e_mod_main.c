@@ -224,7 +224,7 @@ _cb_mouse_wheel(void *data, Evas *e, Evas_Object *obj, void *event)
    E_Menu *m;
    E_Menu_Item *mi;
    int cx, cy;
-   if (ev->z == 1)
+//    if (ev->z == 1)
       e_bg_auto_transition_set("/home/simon/.e/e/backgrounds/Linux/", inst);
 //    else if (ev->z == -1)
       // TODO Rückwärts in der Liste
@@ -342,7 +342,7 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
                                   _cb_mouse_wheel, inst);
    
 //    e_bg_auto_transition_set("/home/simon/.e/e/backgrounds/Neue Hintergründe/", inst);
-   e_bg_auto_transition_set("/home/simon/Pictures/Landschaftsbilder/", inst);
+   e_bg_auto_transition_set("/home/simon/.e/e/backgrounds/Linux/", inst);
    
    return gcc;
 }
