@@ -129,18 +129,18 @@ _basic_create_widgets(E_Config_Dialog *cfd,
    lb = e_widget_label_add(evas, "Choose Image Directory to use");
    e_widget_list_object_append(o, lb, 0, 0, 0);
 
-   rg = e_widget_radio_group_new(&(cfdata->fmdir));
+   rg = e_widget_radio_group_new(&(cfdata->cfg.fmdir));
 
    /* create dir radios */
    l = e_widget_radio_add(evas, "System Directory", 0, rg);
    cfdata->l_system = l;
 //    evas_object_smart_callback_add(ow, "changed", _cb_dir, cfdata);
    e_widget_list_object_append(o, l, 0, 0, 0);
-   l = e_widget_radio_add(evas, "User Directory", 0, rg);
+   l = e_widget_radio_add(evas, "User Directory", 1, rg);
    cfdata->l_user = l;
 //    evas_object_smart_callback_add(ow, "changed", _cb_dir, cfdata);
    e_widget_list_object_append(o, l, 0, 0, 0);
-   l = e_widget_radio_add(evas, "Custom Directory", 0, rg);
+   l = e_widget_radio_add(evas, "Custom Directory", 2, rg);
    cfdata->l_custom = l;
 //    evas_object_smart_callback_add(l, "changed", _cb_dir, cfdata);
    e_widget_list_object_append(o, l, 0, 0, 0);
@@ -172,7 +172,7 @@ _basic_apply_data(E_Config_Dialog *cfd  EINA_UNUSED,
    ci->switch_time = cfdata->cfg.switch_time;
 //    ci->dir = 1;
 //    ci->enable_switch = 1;
-   ci->fmdir = 1;
+   ci->fmdir = cfdata->cfg.fmdir;
    ci->current_dir = "test";
    e_config_save_queue();
    return 1;
