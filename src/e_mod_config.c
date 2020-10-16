@@ -7,7 +7,7 @@ struct _E_Config_Dialog_Data
    Evas_Object *l_system;
    Evas_Object *l_user;
    Evas_Object *l_custom;
-   int              fmdir
+//    int              fmdir;
 };
 
 /* Protos */
@@ -15,6 +15,7 @@ static void        *_create_data(E_Config_Dialog *cfd);
 static void         _free_data(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
 static Evas_Object *_basic_create_widgets(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata);
 static int          _basic_apply_data(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
+
 
 void
 e_int_config_wp_slideshow_module(Evas_Object *parent EINA_UNUSED, Config_Item *ci)
@@ -50,14 +51,6 @@ _create_data(E_Config_Dialog *cfd EINA_UNUSED)
    memcpy(&(cfdata->cfg), ci, sizeof(Config_Item));
 
    return cfdata;
-   
-//    E_Config_Dialog_Data *cfdata;
-// 
-//    cfdata = E_NEW(E_Config_Dialog_Data, 1);
-//    cfd->cfdata = cfdata;
-//    cfdata->cfd = cfd;
-//    _fill_data(cfdata);
-//    return cfdata;
 }
 
 static void
@@ -112,48 +105,33 @@ _basic_create_widgets(E_Config_Dialog *cfd,
    Evas_Object *lb, *slider, *dir, *rdg, *sep, *custom_dir, *parent, *o, *sl_refresh;
    Evas_Object *ob, *tab, *of, *l;
    E_Radio_Group *rg;
-   
 
-   parent = e_win_evas_win_get(evas);
-   
-   
    o = e_widget_list_add(evas, 0, 0);
 
    lb = e_widget_label_add(evas, "Time between wallpaper switch");
    e_widget_list_object_append(o, lb, 0, 0, 0);
 
-   slider = e_widget_slider_add(evas, 1, 0, "%1.0f min", 1, 120, 1, &cfdata->cfg.switch_time,
+   slider = e_widget_slider_add(evas, 1, 0, "%1.0f min", 1, 120, 1, &(cfdata->cfg.switch_time),
                             NULL, NULL, 100);
    e_widget_list_object_append(o, slider, 0, 0, 0);
 
    lb = e_widget_label_add(evas, "Choose Image Directory to use");
    e_widget_list_object_append(o, lb, 0, 0, 0);
 
-   rg = e_widget_radio_group_new(&(cfdata->cfg.fmdir));
-
-   /* create dir radios */
-   l = e_widget_radio_add(evas, "System Directory", 0, rg);
-   cfdata->l_system = l;
-//    evas_object_smart_callback_add(ow, "changed", _cb_dir, cfdata);
-   e_widget_list_object_append(o, l, 0, 0, 0);
-   l = e_widget_radio_add(evas, "User Directory", 1, rg);
-   cfdata->l_user = l;
-//    evas_object_smart_callback_add(ow, "changed", _cb_dir, cfdata);
-   e_widget_list_object_append(o, l, 0, 0, 0);
-   l = e_widget_radio_add(evas, "Custom Directory", 2, rg);
-   cfdata->l_custom = l;
-//    evas_object_smart_callback_add(l, "changed", _cb_dir, cfdata);
-   e_widget_list_object_append(o, l, 0, 0, 0);
-   
-   
-//    evas_object_smart_callback_add(ow, "changed", _cb_custom, NULL);
-   
-   
-//    e_widget_disabled_set(cfdata->o_fm, state);
-   
-//    custom_dir = e_widget_entry_add(evas, NULL/*&cfdata->cfg.current_dir*/, NULL, NULL, NULL);
-//    e_widget_list_object_append(o, custom_dir, 1, 0, 0);
-   
+//    rg = e_widget_radio_group_new(&(cfdata->cfg.fmdir));
+// 
+//    /* create dir radios */
+//    l = e_widget_radio_add(evas, "System Directory", 0, rg);
+//    cfdata->l_system = l;
+//    e_widget_list_object_append(o, l, 0, 0, 0);
+//    l = e_widget_radio_add(evas, "User Directory", 1, rg);
+//    cfdata->l_user = l;
+//    e_widget_list_object_append(o, l, 0, 0, 0);
+//    l = e_widget_radio_add(evas, "Custom Directory", 2, rg);
+//    cfdata->l_custom = l;
+//    e_widget_list_object_append(o, l, 0, 0, 0);
+//    
+//    
 
    
    return o;
@@ -167,13 +145,13 @@ _basic_apply_data(E_Config_Dialog *cfd  EINA_UNUSED,
    Config_Item *ci;
 
    ci = cfd->data;
+   
    memcpy(ci, &(cfdata->cfg), sizeof(Config_Item));
-//    ci->slide = EINA_TRUE;
    ci->switch_time = cfdata->cfg.switch_time;
 //    ci->dir = 1;
 //    ci->enable_switch = 1;
-   ci->fmdir = cfdata->cfg.fmdir;
-   ci->current_dir = "test";
+//    ci->fmdir = cfdata->cfg.fmdir;
+//    ci->current_dir = "test";
    e_config_save_queue();
    return 1;
 }

@@ -24,12 +24,11 @@ struct _Config
 struct _Config_Item
 {
   const char *id;
-  Eina_Bool slide;
+//   Eina_Bool slide;
   int switch_time;
-  int dir_value;
-  int fmdir;
-  int enable_switch;
-  char *current_dir;
+//   int fmdir;
+//   int enable_switch;
+//   char *current_dir;
 };
 
 void e_int_config_wp_slideshow_module(Evas_Object *parent, Config_Item *ci);
