@@ -3,7 +3,7 @@
 
 struct _E_Config_Dialog_Data
 {
-//    Config_Item cfg;
+   Config_Item cfg;
    Evas_Object *l_system;
    Evas_Object *l_user;
    Evas_Object *l_custom;
@@ -103,7 +103,6 @@ _basic_create_widgets(E_Config_Dialog *cfd,
                       Evas *evas,
                       E_Config_Dialog_Data *cfdata)
 {
-
    Evas_Object *box;
    
   
@@ -157,7 +156,7 @@ _basic_apply_data(E_Config_Dialog *cfd  EINA_UNUSED,
 //    ci->enable_switch = 1;
 //    ci->fmdir = cfdata->cfg.fmdir;
 //    ci->current_dir = "test";
-   e_config_save_queue();
+// //    e_config_save_queue();
    return 1;
 }
 

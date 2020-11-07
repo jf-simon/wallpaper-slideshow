@@ -24,7 +24,7 @@ struct _Config
 struct _Config_Item
 {
   const char *id;
-  int switch_time;
+  double switch_time;
 };
 
 void e_int_config_wp_slideshow_module(Evas_Object *parent, Config_Item *ci);

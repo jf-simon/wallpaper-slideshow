@@ -251,7 +251,7 @@ _conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-//    ci->switch_time = 10;
+   ci->switch_time = 102;
 
    wp_slideshow_config->items = eina_list_append(wp_slideshow_config->items, ci);
    e_config_save_queue();
@@ -412,7 +412,7 @@ e_modapi_init(E_Module *m)
 #define T Config_Item
 #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
-   E_CONFIG_VAL(D, T, switch_time, INT);
+   E_CONFIG_VAL(D, T, switch_time, DOUBLE);
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
 #undef T
 #undef D
