@@ -12,7 +12,7 @@ typedef struct {
    E_Gadcon_Client *gcc;
    E_Gadcon_Popup  *popup;
    Evas_Object     *popup_label;
-   Ecore_Timer *wp_timer;
+   Ecore_Timer     *wp_timer;
    Config_Item     *cfg;
 } Instance;
 
@@ -251,7 +251,7 @@ _conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-   ci->switch_time = 10;
+//    ci->switch_time = 10;
 
    wp_slideshow_config->items = eina_list_append(wp_slideshow_config->items, ci);
    e_config_save_queue();
@@ -412,7 +412,6 @@ e_modapi_init(E_Module *m)
 #define T Config_Item
 #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
-//    E_CONFIG_VAL(D, T, fmdir, INT);
    E_CONFIG_VAL(D, T, switch_time, INT);
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
 #undef T
@@ -423,6 +422,7 @@ e_modapi_init(E_Module *m)
 
    wp_slideshow_config = e_config_domain_load("module.wallpaper-slideshow", conf_edd);
 
+   
    if (!wp_slideshow_config)
      wp_slideshow_config = E_NEW(Config, 1);
 
