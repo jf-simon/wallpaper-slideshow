@@ -247,18 +247,18 @@ _conf_item_get(const char *id)
 {
    Config_Item *ci;
 
-  GADCON_CLIENT_CONFIG_GET(Config_Item, wp_slideshow_config->items, _gc_class, id);
+   GADCON_CLIENT_CONFIG_GET(Config_Item, wp_slideshow_config->items, _gc_class, id);
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
    ci->switch_time = 102;
+   ci->enable_switch = EINA_TRUE;
 
    wp_slideshow_config->items = eina_list_append(wp_slideshow_config->items, ci);
    e_config_save_queue();
 
    return ci;
 }
-
 
 static void
 _e_mod_action(const char *params)
@@ -267,13 +267,8 @@ _e_mod_action(const char *params)
    Instance *inst;
 
    if (!params) return;
-//    if (strcmp(params, "show_calendar")) return;
-// 
-//    EINA_LIST_FOREACH(clock_instances, l, inst)
-//      if (inst->popup)
-//        _clock_popup_free(inst);
-//      else
-//        _clock_popup_new(inst);
+   
+   _cb_mouse_wheel(inst, NULL, NULL, NULL);
 }
 
 static void
@@ -405,14 +400,15 @@ E_API E_Module_Api e_modapi =
 E_API void *
 e_modapi_init(E_Module *m)
 {  // called when e loads this module
-   
+
    conf_item_edd = E_CONFIG_DD_NEW("Config_Item", Config_Item);
 #undef T
 #undef D
 #define T Config_Item
 #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
-   E_CONFIG_VAL(D, T, switch_time, DOUBLE);
+   E_CONFIG_VAL(D, T, switch_time, FLOAT);
+   E_CONFIG_VAL(D, T, enable_switch, INT);
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
 #undef T
 #undef D
@@ -450,6 +446,6 @@ e_modapi_shutdown(E_Module *m)
 E_API int
 e_modapi_save(E_Module *m)
 {  // called when e wants this module to save its config - no config to save
-   e_config_domain_save("wallpaper-slideshow", conf_edd, wp_slideshow_config);
+   e_config_domain_save("module.wallpaper-slideshow", conf_edd, wp_slideshow_config);
    return 1;
 }
