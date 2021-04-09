@@ -26,6 +26,8 @@ struct _Config_Item
   const char *id;
   double switch_time;
   int enable_switch;
+  int fmdir;
+  const char *custom_dir;
 };
 
 void e_int_config_wp_slideshow_module(Evas_Object *parent, Config_Item *ci);

@@ -220,7 +220,7 @@ _cb_mouse_wheel(void *data, Evas *e, Evas_Object *obj, void *event)
 {
    Instance *inst = data;
    Evas_Event_Mouse_Wheel *ev = event;
-   char buf[64];
+//    char buf[64];
    E_Menu *m;
    E_Menu_Item *mi;
    int cx, cy;
@@ -251,7 +251,7 @@ _conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-   ci->switch_time = 102;
+   ci->switch_time = 10;
    ci->enable_switch = EINA_TRUE;
 
    wp_slideshow_config->items = eina_list_append(wp_slideshow_config->items, ci);
